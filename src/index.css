@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer base {
+  input {
+    background-color: transparent !important;
+  }
+
+  input:focus {
+    background-color: transparent !important;
+  }
+
+  input::selection {
+  background-color: rgba(34,197,94,0.25);
+}
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+    box-shadow: 0 0 0 1000px transparent inset !important;
+    -webkit-text-fill-color: #111827 !important;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+}

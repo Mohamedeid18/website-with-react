@@ -7,6 +7,7 @@ import Brands from './components/Brands/Brands';
 import Category from './components/Category/Category';
 import Error from './components/Error/Error';
 import Layout from './components/Layout/Layout';
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -22,6 +23,7 @@ const App = () => {
   ])
   return (
     <>
+      <Toaster/>
       <RouterProvider router={router} />
     </>
   )
