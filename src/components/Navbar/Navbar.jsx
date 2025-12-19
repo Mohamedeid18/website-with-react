@@ -1,7 +1,16 @@
+import { useContext } from "react";
 import logoImg from "./../../assets/images/freshcart-logo.svg"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
+import { AuthContext } from "../../Context/AuthContext";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const { token , setToken } = useContext(AuthContext);
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem("token");
+    navigate("/login");
+  }
   return (
     <nav className="p-4 bg-gray-100 text-center">
       <div className="container mx-auto p-2">
@@ -9,6 +18,7 @@ const Navbar = () => {
           <div className="flex flex-wrap  flex-col md:flex-row items-center justify-between">
             <img src={logoImg} alt="Freshcart Logo" className="w-[120px]" />
             <ul className="flex flex-wrap  flex-col md:flex-row items-center justify-between">
+              
               <li className="mx-3 my-3 md:my-0">
                 <NavLink to="/" className={({ isActive }) => isActive ? "text-green-400" : ""}>
                 Home
@@ -40,6 +50,7 @@ const Navbar = () => {
               <i className="fa fa-brands fa-instagram ml-2"></i>
             </div>
             <ul className="flex flex-wrap  flex-col md:flex-row items-center justify-between">
+              {token ? <button className="mx-3 my-3 md:my-0" onClick={logout}>Logout</button>:<>
               <li className="mx-3 my-3 md:my-0">
                 <NavLink to="/login" className={({ isActive }) => isActive ? "text-green-400" : ""}>
                 Login
@@ -50,6 +61,7 @@ const Navbar = () => {
                 Registor
                 </NavLink>
               </li>
+              </>}
             </ul>
           </div>
         </div>

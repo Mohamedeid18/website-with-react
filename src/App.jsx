@@ -8,24 +8,30 @@ import Category from './components/Category/Category';
 import Error from './components/Error/Error';
 import Layout from './components/Layout/Layout';
 import { Toaster } from "react-hot-toast";
+import AuthContextProvider from "./Context/AuthContext";
+import ProtectRoute from "./components/ProtectRoute/ProtectRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const App = () => {
+  const queryClient = new QueryClient();
   const router = createBrowserRouter([
     {path: "", element: <Layout /> , children: [
     {path: "/", element: <Home /> },
-    {path: "/cart", element: <Cart /> },
+    {path: "/cart", element: <ProtectRoute><Cart /></ProtectRoute> },
     {path: "/login", element: <Login /> },
     {path: "/register", element: <Register /> },
-    {path: "/brands", element: <Brands /> },
-    {path: "/category", element: <Category /> },
+    {path: "/brands", element: <ProtectRoute><Brands /></ProtectRoute> },
+    {path: "/category", element: <ProtectRoute><Category /></ProtectRoute> },
     {path: "*", element: <Error/> }
     ]}
   ])
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
+    <AuthContextProvider>
       <Toaster/>
       <RouterProvider router={router} />
-    </>
+    </AuthContextProvider>
+    </QueryClientProvider>
   )
 }
 

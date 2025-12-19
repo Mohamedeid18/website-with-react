@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import { AuthContext } from "../../Context/AuthContext";
 
 const Login = () => {
+  const { setToken } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const User = {
@@ -23,6 +25,8 @@ const Login = () => {
         "https://ecommerce.routemisr.com/api/v1/auth/signin",
         values
       );
+      localStorage.setItem("token", data.token);
+      setToken(data.token);
       toast.success(data.message, { duration: 2000 });
       setLoading(false);
       navigate("/");
