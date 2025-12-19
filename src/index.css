@@ -23,3 +23,9 @@
     transition: background-color 9999s ease-in-out 0s;
   }
 }
+.slick-dots li div {
+  @apply bg-gray-300;
+}
+.slick-dots li.slick-active div {
+  @apply bg-green-500;
+}

@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Bars } from "react-loader-spinner";
+import HomeSlider from "../HomeSlider/HomeSlider";
+import CategorySlider from "../CategorySlider/CategorySlider";
 
 
 
@@ -38,6 +40,11 @@ const Home = () => {
   return (
     <>
         <div className="md:w-[90%] mx-auto">
+          {/* slider */}
+          <HomeSlider/>
+          {/* category slider */}
+          <CategorySlider/>
+          { /* products */ }
           <div className="flex flex-wrap justify-center items-center">
             {data?.data.data.map((product) => (
               <div
