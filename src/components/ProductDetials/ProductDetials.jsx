@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 const ProductDetials = () => {
     const [loading, setLoading] = useState(false)
     const { id } = useParams();
-    const AddProductToCart = useContext(cartcontext);
+    const {AddProductToCart} = useContext(cartcontext);
     const AddToCart = async () => {
         setLoading(true);
         const data = await AddProductToCart(id);

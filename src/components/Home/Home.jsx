@@ -12,11 +12,10 @@ import toast from "react-hot-toast";
 
 const Home = () => {
       const [loading, setLoading] = useState(null)
-    const AddProductToCart = useContext(cartcontext);
+    const {AddProductToCart} = useContext(cartcontext);
     const AddToCart = async (id) => {
         setLoading(id);
         const data = await AddProductToCart(id);
-        console.log(data);
         if (data?.status === "success"){
             toast.success(data.message, { duration: 2000 });
         }else{
