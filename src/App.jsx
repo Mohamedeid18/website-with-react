@@ -11,12 +11,15 @@ import { Toaster } from "react-hot-toast";
 import AuthContextProvider from "./Context/AuthContext";
 import ProtectRoute from "./components/ProtectRoute/ProtectRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProductDetials from "./components/ProductDetials/ProductDetials";
+import CartcontextProvider from "./Context/Cartcontext";
 
 const App = () => {
   const queryClient = new QueryClient();
   const router = createBrowserRouter([
     {path: "", element: <Layout /> , children: [
-    {path: "/", element: <Home /> },
+    {path: "/", element: <ProtectRoute><Home /></ProtectRoute> },
+    {path: "/productDetails/:id", element: <ProtectRoute><ProductDetials /></ProtectRoute> },
     {path: "/cart", element: <ProtectRoute><Cart /></ProtectRoute> },
     {path: "/login", element: <Login /> },
     {path: "/register", element: <Register /> },
@@ -28,8 +31,10 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
     <AuthContextProvider>
+      <CartcontextProvider>
       <Toaster/>
       <RouterProvider router={router} />
+      </CartcontextProvider>
     </AuthContextProvider>
     </QueryClientProvider>
   )
