@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import logoImg from "./../../assets/images/freshcart-logo.svg"
-import { NavLink, useNavigate } from "react-router-dom"
+import { Link, NavLink, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../Context/AuthContext";
 import { cartcontext } from "../../Context/Cartcontext";
 
@@ -18,7 +18,9 @@ const Navbar = () => {
       <div className="container mx-auto p-2">
         <div className="flex flex-wrap  flex-col md:flex-row items-center justify-between">
           <div className="flex flex-wrap  flex-col md:flex-row items-center justify-between">
-            <img src={logoImg} alt="Freshcart Logo" className="w-[120px]" />
+            <Link to="/">
+              <img src={logoImg} alt="Freshcart Logo" className="w-[120px]" />
+            </Link>
             <ul className="flex flex-wrap  flex-col md:flex-row items-center justify-between">
               
               <li className="mx-3 my-3 md:my-0">
