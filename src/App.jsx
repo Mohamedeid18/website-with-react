@@ -13,6 +13,8 @@ import ProtectRoute from "./components/ProtectRoute/ProtectRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ProductDetials from "./components/ProductDetials/ProductDetials";
 import CartcontextProvider from "./Context/Cartcontext";
+import Payment from "./components/Payment/Payment";
+import AllOrders from "./components/AllOrders/AllOrders";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -25,7 +27,9 @@ const App = () => {
     {path: "/register", element: <Register /> },
     {path: "/brands", element: <ProtectRoute><Brands /></ProtectRoute> },
     {path: "/category", element: <ProtectRoute><Category /></ProtectRoute> },
-    {path: "*", element: <Error/> }
+    {path: "*", element: <Error/> },
+    {path: "/payment", element: <ProtectRoute><Payment /></ProtectRoute> },
+    {path: "/allOrders", element: <ProtectRoute><AllOrders /></ProtectRoute> },
     ]}
   ])
   return (

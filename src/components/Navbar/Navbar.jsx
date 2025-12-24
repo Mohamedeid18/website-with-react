@@ -44,7 +44,14 @@ const Navbar = () => {
                  <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500  border-white rounded-full -top-2 -end-4">{numOfCartItems}</div>
                 </NavLink>
               </li>
+              <li className="mx-2 my-2 md:my-0">
+                <NavLink to="/allOrders" className={({ isActive }) => isActive ? "text-green-400 relative" : "relative"}>
+                All Orders
+                 
+                </NavLink>
+              </li>
             </ul>
+            
           </div>
           <div className="flex flex-wrap  flex-col md:flex-row items-center justify-between">
             <div>

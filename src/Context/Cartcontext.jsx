@@ -10,6 +10,7 @@ const CartcontextProvider = ({ children }) => {
   const [numOfCartItems , setNumOfCartItems] = useState(0);
   const [totalPrice , setTotalPrice] = useState(0);
   const [loading , setLoading] = useState(false);
+  const [cartId, setCartId] = useState(null)
   // add product to cart
       const AddProductToCart = async (id) => {
         try {
@@ -39,6 +40,7 @@ const CartcontextProvider = ({ children }) => {
             setProducts(data.data.products);
             setTotalPrice(data.data.totalCartPrice);
             setLoading(false);
+            setCartId(data?.data?._id);
             return data;
         } catch (error) {
             console.log(error ,"error in get user cart");
@@ -95,6 +97,7 @@ const CartcontextProvider = ({ children }) => {
             getUserCart();
         }
       };
+      // payment
       // on token change
       useEffect(() => {
         if (token){
@@ -106,7 +109,7 @@ const CartcontextProvider = ({ children }) => {
       }, [token]);
   return (
     <cartcontext.Provider value={
-      {AddProductToCart ,  products , numOfCartItems , totalPrice , loading , UpdateCart , removeItem , ClearCart}}>
+      {AddProductToCart ,  products , numOfCartItems , totalPrice , loading , UpdateCart , removeItem , ClearCart , cartId ,setNumOfCartItems ,setTotalPrice ,setProducts}}>
       {children}
     </cartcontext.Provider>
   );

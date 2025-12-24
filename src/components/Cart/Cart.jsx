@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { cartcontext } from './../../Context/Cartcontext';
 import { Bars } from "react-loader-spinner";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const {products ,  totalPrice , loading , UpdateCart , removeItem , ClearCart} = useContext(cartcontext);
@@ -29,7 +30,12 @@ const Cart = () => {
       <h1 className="text-3xl font-semibold text-gray-700 my-5">Shop Cart :</h1>
       <div className="flex justify-between items-center mb-3">
         <h2 className="font-mono text-green-600 text-lg mb-4">Total Cart Price : {totalPrice} EGP</h2>
-        <button onClick={ClearCart} className="px-4 py-2 bg-transparent border border-red-600 text-red-600 rounded hover:bg-red-700 hover:text-white"><i className="fa fa-trash mr-1 text-lg"></i>Clear Cart</button>
+        <div className="flex space-x-2">
+          <button onClick={ClearCart} className="px-4 py-2 bg-transparent border border-red-600 text-red-600 rounded hover:bg-red-700 hover:text-white"><i className="fa fa-trash mr-1 text-lg"></i>Clear Cart</button>
+          <Link to="/payment" className="px-4 py-2 bg-transparent border border-sky-600 text-sky-600 rounded hover:bg-sky-700 hover:text-white">
+            <button ><i className="fa fa-credit-card mr-1 text-lg"></i>payment</button>
+          </Link>
+        </div>
       </div>
       <div>
        {products?.map((product, index) => (
